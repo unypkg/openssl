@@ -37,12 +37,11 @@ latest_commit_id="$(echo "$latest_head" | cut --fields=1)"
 
 ### Check if the build should be continued
 version_details
-[[ ! -f /uny/sources/vdet-"$pkgname"-new ]] && echo "No newer version needs to be built." && exit
+#[[ ! -f /uny/sources/vdet-"$pkgname"-new ]] && echo "No newer version needs to be built." && exit
 
 check_for_repo_and_create
 git_clone_source_repo
 
-version_details
 archiving_source
 
 ######################################################################################################################
