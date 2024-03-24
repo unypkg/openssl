@@ -66,6 +66,7 @@ unset LD_RUN_PATH
 
 ./config --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
          --openssldir=/etc/ssl \
+         --libdir=lib \
          shared                \
          zlib-dynamic
 
