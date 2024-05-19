@@ -2,11 +2,19 @@
 # shellcheck disable=SC2034,SC1091,SC2086,SC2016
 
 set -xv
+
 ######################################################################################################################
 ### Setup Build System and GitHub
 
+#apt install -y autopoint
+
 wget -qO- uny.nu/pkg | bash -s buildsys
-mkdir /uny/tmp
+
+### Installing build dependencies
+#unyp install python
+
+#pip3_bin=(/uny/pkg/python/*/bin/pip3)
+#"${pip3_bin[0]}" install meson
 
 ### Getting Variables from files
 UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
@@ -14,15 +22,13 @@ export UNY_AUTO_PAT
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
 
-source /uny/uny/build/github_conf
-source /uny/uny/build/download_functions
 source /uny/git/unypkg/fn
+uny_auto_github_conf
 
 ######################################################################################################################
 ### Timestamp & Download
 
-uny_build_date_seconds_now="$(date +%s)"
-uny_build_date_now="$(date -d @"$uny_build_date_seconds_now" +"%Y-%m-%dT%H.%M.%SZ")"
+uny_build_date
 
 mkdir -pv /uny/sources
 cd /uny/sources || exit
@@ -41,7 +47,6 @@ version_details
 # Release package no matter what:
 echo "newer" >release-"$pkgname"
 
-check_for_repo_and_create
 git_clone_source_repo
 
 archiving_source
@@ -52,7 +57,7 @@ archiving_source
 # unyc - run commands in uny's chroot environment
 unyc <<"UNYEOF"
 set -xv
-source /uny/build/functions
+source /uny/git/unypkg/fn
 
 pkgname="openssl"
 
