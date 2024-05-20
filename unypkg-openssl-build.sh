@@ -48,7 +48,6 @@ version_details
 echo "newer" >release-"$pkgname"
 
 git_clone_source_repo
-
 archiving_source
 
 ######################################################################################################################
