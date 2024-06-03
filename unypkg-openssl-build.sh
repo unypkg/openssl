@@ -72,7 +72,7 @@ unset LD_RUN_PATH
 ./config --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
          --openssldir=/etc/uny/ssl \
          --libdir=lib \
-         shared                \
+         shared \
          zlib-dynamic
 
 make -j"$(nproc)"
