@@ -34,12 +34,12 @@ mkdir -pv /uny/sources
 cd /uny/sources || exit
 
 pkgname="openssl"
-pkggit="https://github.com/openssl/openssl.git refs/tags/openssl-*"
+pkggit="https://github.com/openssl/openssl.git refs/tags/OpenSSL_1_1_1w"
 gitdepth="--depth=1"
 
 ### Get version info from git remote
-latest_head="$(git ls-remote --refs --tags --sort="v:refname" $pkggit | grep -E "openssl-[0-9.]*$" | tail --lines=1)"
-latest_ver="$(echo "$latest_head" | grep -o "openssl-[0-9.]*" | sed "s|openssl-||")"
+latest_head="$(git ls-remote --refs --tags --sort="v:refname" $pkggit | grep -E "OpenSSL_1_1_1w" | tail --lines=1)"
+latest_ver="$(echo "$latest_head" | grep -o "OpenSSL_1_1_1w" | sed -e "s|OpenSSL_||" -e "s|_|.|g")"
 latest_commit_id="$(echo "$latest_head" | cut --fields=1)"
 
 version_details
