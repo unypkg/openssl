@@ -70,7 +70,7 @@ get_include_paths_temp
 unset LD_RUN_PATH
 
 ./config --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
-         --openssldir=/etc/ssl \
+         --openssldir=/etc/uny/ssl \
          --libdir=lib \
          shared                \
          zlib-dynamic
